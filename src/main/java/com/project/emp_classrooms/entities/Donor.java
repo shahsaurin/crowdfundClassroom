@@ -16,5 +16,31 @@ public class Donor extends Person {
 	
 	@OneToMany(mappedBy="donor")
 	private List<Donation> donations;
+	
+	public int getContributedProjects() {
+		return contributedProjects;
+	}
+
+	public void setContributedProjects(int contributedProjects) {
+		this.contributedProjects = contributedProjects;
+	}
+
+	public int getTotalAmountDonated() {
+		return totalAmountDonated;
+	}
+
+	public void setTotalAmountDonated(int totalAmountDonated) {
+		this.totalAmountDonated = totalAmountDonated;
+	}
+
+	public List<Donation> getDonations() {
+		return donations;
+	}
+
+	public void setDonations(List<Donation> donations) {
+		this.donations = donations;
+	}
+	
+	
 
 }
