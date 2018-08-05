@@ -16,6 +16,7 @@ public class Donation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	private double amount;
 	
 	@ManyToOne
 	@JsonIgnore

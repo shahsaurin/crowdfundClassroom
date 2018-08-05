@@ -25,7 +25,7 @@ public class Message {
 	
 	@Enumerated
 	@Column(columnDefinition="smallint")
-	private User messageCategory;
+	private User messageCategory;			// 'User' is an 'Enum' and not an entity (class)	
 	
 	@ManyToOne
 	@JsonIgnore

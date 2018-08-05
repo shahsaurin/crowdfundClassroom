@@ -16,14 +16,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Teacher extends Person {
 
-//	private int projectsInitiated;		INSTEAD ADDED A LIST OF PROJECTS BELOW THE TEACHER HAS INITIATED
-	private int projectsReceivedApproval;
+	private int projectsInitiated;		// How if INSTEAD ADDED A LIST OF PROJECTS BELOW THE TEACHER HAS INITIATED
+//	private int projectsReceivedApproval;
 	
 	@ManyToOne
 	@JsonIgnore
 	private School school;
 	
 	@OneToMany(mappedBy="teacher")
-	private List<Project> initiatedProjects;
+	private List<Project> projects;
 	
 }
