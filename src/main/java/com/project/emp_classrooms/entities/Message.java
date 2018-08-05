@@ -2,7 +2,9 @@ package com.project.emp_classrooms.entities;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.emp_classrooms.enums.User;
 
 @Entity
 public class Message {
@@ -19,6 +22,10 @@ public class Message {
 	private int id;
 	private String description;
 	private Date date;
+	
+	@Enumerated
+	@Column(columnDefinition="smallint")
+	private User messageCategory;
 	
 	@ManyToOne
 	@JsonIgnore

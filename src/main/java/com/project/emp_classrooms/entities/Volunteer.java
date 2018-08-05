@@ -14,6 +14,6 @@ public class Volunteer extends Person{
 	@OneToMany(mappedBy="volunteer")
 	private List<Project> approvedProjects;
 	
-	private String tempFieldDelete;
+	private int projectsApproved;
 	
 }
