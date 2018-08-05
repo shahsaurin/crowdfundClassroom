@@ -12,8 +12,27 @@ import javax.persistence.OneToMany;
 public class Volunteer extends Person{
 	
 	@OneToMany(mappedBy="volunteer")
-	private List<Project> approvedProjects;
+	private List<Project> projects;
 	
 	private int projectsApproved;
+
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public int getProjectsApproved() {
+		return projectsApproved;
+	}
+
+	public void setProjectsApproved(int projectsApproved) {
+		this.projectsApproved = projectsApproved;
+	}
+	
+	
 	
 }

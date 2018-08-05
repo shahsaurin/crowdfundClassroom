@@ -23,7 +23,34 @@ public class Teacher extends Person {
 	@JsonIgnore
 	private School school;
 	
+	
 	@OneToMany(mappedBy="teacher")
 	private List<Project> projects;
+
+	public int getProjectsInitiated() {
+		return projectsInitiated;
+	}
+
+	public void setProjectsInitiated(int projectsInitiated) {
+		this.projectsInitiated = projectsInitiated;
+	}
+
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+	
+	
 	
 }

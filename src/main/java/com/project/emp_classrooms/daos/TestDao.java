@@ -12,6 +12,12 @@ public class TestDao implements CommandLineRunner {
 	@Autowired
 	DonorDao donorDao;
 	
+	@Autowired
+	VolunteerDao volunteerDao;
+	
+	@Autowired
+	TeacherDao teacherDao;
+	
 	public static void main(String[] args) {
 		EmpowerClassroomsApplication.main(new String[] {});
 	}
@@ -19,6 +25,8 @@ public class TestDao implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		donorDao.test();
+		volunteerDao.test();
+		teacherDao.test();
 	}
 	
 }

@@ -62,12 +62,12 @@ public class DonorDao {
 		
 		Donor d1 = new Donor();
 		d1.setContributedProjects(7);
-		d1.setDob(Date.valueOf("1993-05-10"));
-		d1.setFirstName("Saurin");
+		d1.setDob(Date.valueOf("1993-06-10"));
+		d1.setFirstName("donor1");
 		Donor d2 = createDonor(d1);
 		
-//		d1.setLastName("Shah");
-//		updateDonor(d2.getId(), d1);
+		d1.setLastName("donor_lname");
+		updateDonor(d2.getId(), d1);
 		
 
 	}
