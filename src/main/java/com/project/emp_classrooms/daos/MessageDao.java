@@ -70,5 +70,6 @@ public class MessageDao {
 		d1.setDescription("edited_description 1");
 		updateMessage(d2.getId(), d1);
 		
+		
 	}
 }

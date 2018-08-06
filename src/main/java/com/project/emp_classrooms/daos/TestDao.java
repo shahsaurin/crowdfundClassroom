@@ -36,13 +36,13 @@ public class TestDao implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		donorDao.test();
-		volunteerDao.test();
+//		donorDao.test();
+//		volunteerDao.test();
 		teacherDao.test();
-		schoolDao.test();
-		projectDao.test();
-		donationDao.test();
-		messageDao.test();
+//		schoolDao.test();
+//		projectDao.test();
+//		donationDao.test();
+//		messageDao.test();
 	}
 	
 }

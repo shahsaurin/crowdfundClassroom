@@ -1,13 +1,16 @@
 package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.School;
 import com.project.emp_classrooms.entities.Teacher;
+import com.project.emp_classrooms.repositories.SchoolRepository;
 import com.project.emp_classrooms.repositories.TeacherRepository;
 
 @Component
@@ -15,6 +18,28 @@ public class TeacherDao {
 
 	@Autowired
 	TeacherRepository teacherRepository;
+	
+	@Autowired
+	SchoolRepository schoolRepository;
+	
+//	For use on web app: On create 'New Teacher' page.
+//	Assumes that school already exists on DB (found by 'name'), teacher will be created.
+//	When teacher creates on save button after filling up the form, the school ID is found first by name entered in 
+//	the school name field in the form. Then for that school ID the teacher will be created.
+//	***** TESTED OK ****
+	public Teacher createTeacherForSchool(int schoolId, Teacher teacher) {
+		School school = schoolRepository.findById(schoolId).get();
+		
+		teacher.setSchool(school);
+		Teacher savedTeacher = teacherRepository.save(teacher);
+		
+		if(school.getTeachers() == null) {
+			school.setTeachers(new ArrayList<Teacher>());
+		} 
+		school.getTeachers().add(teacher);
+		schoolRepository.save(school);
+		return savedTeacher;		
+	}
 	
 	public Teacher createTeacher(Teacher teacher) {
 		return teacherRepository.save(teacher);
@@ -67,6 +92,13 @@ public class TeacherDao {
 		
 		t1.setLastName("teaname");
 		updateTeacher(t2.getId(), t1);
+		
+		School s1 = new School();
+		s1.setName("temp");
+		s1.setCity("NYC");
+		s1 = schoolRepository.save(s1);
+		
+		createTeacherForSchool(s1.getId(), t2);				// TESTED OK
 		
 
 	}
