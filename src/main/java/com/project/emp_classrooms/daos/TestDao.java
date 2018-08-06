@@ -27,6 +27,9 @@ public class TestDao implements CommandLineRunner {
 	@Autowired
 	DonationDao donationDao;
 	
+	@Autowired
+	MessageDao messageDao;
+	
 	public static void main(String[] args) {
 		EmpowerClassroomsApplication.main(new String[] {});
 	}
@@ -39,6 +42,7 @@ public class TestDao implements CommandLineRunner {
 		schoolDao.test();
 		projectDao.test();
 		donationDao.test();
+		messageDao.test();
 	}
 	
 }
