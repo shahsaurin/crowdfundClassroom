@@ -1,6 +1,7 @@
 package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,13 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.project.emp_classrooms.entities.School;
+import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.repositories.SchoolRepository;
+import com.project.emp_classrooms.repositories.TeacherRepository;
 
 @Component
 public class SchoolDao {
 
 	@Autowired
 	SchoolRepository schoolRepository;
+	
+	@Autowired
+	TeacherRepository teacherRepository;
 	
 	public School createSchool(School school) {
 		return schoolRepository.save(school);
@@ -49,6 +55,20 @@ public class SchoolDao {
 	}
 	
 	void deleteAllSchools() {
+		
+//		Set 'school' field in Teacher as NULL and then set the 'List' of teachers in school as NULL:
+		List<School> schools = (List<School>) schoolRepository.findAll();
+		for (Iterator<School> iterator = schools.iterator(); iterator.hasNext();) {
+			School school = (School) iterator.next();
+			List<Teacher> teachers = school.getTeachers();
+			for (Iterator<Teacher> iterator2 = teachers.iterator(); iterator2.hasNext();) {
+				Teacher teacher = (Teacher) iterator2.next();
+				teacher.setSchool(null);
+				teacherRepository.save(teacher);
+			}
+			school.setTeachers(null);
+			schoolRepository.save(school);
+		}
 		schoolRepository.deleteAll();
 	}
 	
