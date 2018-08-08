@@ -24,7 +24,11 @@ public class ProjectDao {
 	TeacherRepository teacherRepository;
 	
 	@Autowired
+	TeacherDao teacherDao;
+	
+	@Autowired
 	SchoolRepository schoolRepository;
+
 
 //	A teacher creates a Project, which becomes a Project of the school he/she is in:
 //	Teacher should be already existing in the DB.
@@ -105,13 +109,19 @@ public class ProjectDao {
 //		p1.setIsApproved(false);
 //		updateProject(p2.getId(), p1);
 		
+		School s1 = new School();
+		s1.setName("VIT");
+		s1.setCity("Pune");
+		s1 = schoolRepository.save(s1);
+		
 		Teacher t1 = new Teacher();
 		t1.setFirstName("Tea_proj");
 		t1.setProjectsInitiated(5);
-		teacherRepository.save(t1);
+//		teacherRepository.save(t1);
 		
+		t1 = teacherDao.createTeacherForSchool(s1.getId(), t1);
 		createProjectForSchool(t1.getId(), p1);
-//		**************** SET school field of above teacher object
+//		**************** SET school field of above teacher object -> Used 'createTeacherForSchool()'
 		
 	}
 

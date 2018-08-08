@@ -1,5 +1,6 @@
 package com.project.emp_classrooms.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,6 +25,12 @@ public class School {
 	
 	@OneToMany(mappedBy="school")
 	private List<Project> projects;
+	
+//	Overriding default constructor:
+	public School() {
+		this.teachers = new ArrayList<Teacher>();
+		this.projects = new ArrayList<Project>();
+	}
 
 	
 	public int getId() {
