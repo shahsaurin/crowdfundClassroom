@@ -16,6 +16,10 @@ public class DonorDao {
 	@Autowired
 	DonorRepository donorRepository;
 	
+	public void donateToProject(int donorId, int projectId, double amount) {
+		
+	}
+	
 	public Donor createDonor(Donor donor) {
 		return donorRepository.save(donor);
 	}

@@ -66,6 +66,8 @@ public class TestDao implements CommandLineRunner {
 		p1.setTitle("Test_proj");
 		p1.setSynopsis("test_synopsis");
 		p1.setShortDescription("test_desc");
+		p1.setTotalPrice(1000.00);
+		p1.setCostToComplete(1000.00);
 		p1 = projectDao.createProjectForSchool(t1.getId(), p1);
 		
 		Volunteer v1 = new Volunteer();

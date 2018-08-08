@@ -23,6 +23,8 @@ public class Project {
 	private String shortDescription;
 	private String synopsis;
 	private Boolean isApproved;
+	private Double totalPrice;
+	private Double costToComplete;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -82,6 +84,22 @@ public class Project {
 
 	public void setIsApproved(Boolean isApproved) {
 		this.isApproved = isApproved;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public Double getCostToComplete() {
+		return costToComplete;
+	}
+
+	public void setCostToComplete(Double costToComplete) {
+		this.costToComplete = costToComplete;
 	}
 
 	public Teacher getTeacher() {
