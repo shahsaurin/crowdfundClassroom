@@ -31,7 +31,7 @@ public class ProjectDao {
 
 
 //	A teacher creates a Project, which becomes a Project of the school he/she is in:
-//	Teacher should be already existing in the DB.
+//	Teacher should be already existing in the DB. Project will be created.
 	public Project createProjectForSchool(int teacherId, Project project) {
 		Teacher teacher = teacherRepository.findById(teacherId).get();
 		School school = teacher.getSchool();
@@ -51,6 +51,8 @@ public class ProjectDao {
 		}
 		school.getProjects().add(savedProject);
 		schoolRepository.save(school);
+		
+//		Also Add the project 'Volunteer' like School and Teacher:
 		
 		return savedProject;
 	
@@ -104,24 +106,7 @@ public class ProjectDao {
 		p1.setShortDescription("Short_description_1");
 		p1.setSynopsis("Synopsis_1");
 		
-//		Project p2 = createProject(p1);
-		
-//		p1.setIsApproved(false);
-//		updateProject(p2.getId(), p1);
-		
-		School s1 = new School();
-		s1.setName("VIT");
-		s1.setCity("Pune");
-		s1 = schoolRepository.save(s1);
-		
-		Teacher t1 = new Teacher();
-		t1.setFirstName("Tea_proj");
-		t1.setProjectsInitiated(5);
-//		teacherRepository.save(t1);
-		
-		t1 = teacherDao.createTeacherForSchool(s1.getId(), t1);
-		createProjectForSchool(t1.getId(), p1);
-//		**************** SET school field of above teacher object -> Used 'createTeacherForSchool()'
+		p1 = createProject(p1);
 		
 	}
 

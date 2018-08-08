@@ -90,18 +90,10 @@ public class TeacherDao {
 		t1.setProjectsInitiated(15);
 		t1.setDob(Date.valueOf("1995-06-20"));
 		t1.setFirstName("tea_1");
-		Teacher t2 = createTeacher(t1);
+		t1 = createTeacher(t1);
 		
 		t1.setLastName("teaname");
-		updateTeacher(t2.getId(), t1);
-		
-		School s1 = new School();
-		s1.setName("temp");
-		s1.setCity("NYC");
-		s1 = schoolRepository.save(s1);
-		
-		createTeacherForSchool(s1.getId(), t2);				// TESTED OK
-		
+		updateTeacher(t1.getId(), t1);
 
 	}
 }

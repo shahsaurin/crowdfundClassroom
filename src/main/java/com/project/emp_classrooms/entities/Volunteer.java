@@ -1,5 +1,6 @@
 package com.project.emp_classrooms.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,6 +16,12 @@ public class Volunteer extends Person{
 	private List<Project> projects;
 	
 	private int projectsApproved;
+	
+	
+//	Default constructor:
+	public Volunteer() {
+		projects = new ArrayList<Project>();
+	}
 
 	
 	public List<Project> getProjects() {

@@ -39,6 +39,10 @@ public class Project {
 	@OneToMany(mappedBy="project")
 	private List<Donation> donations;
 
+//	Deafult constructor:
+	public Project() {
+		isApproved = false;
+	}
 	
 	public int getId() {
 		return id;

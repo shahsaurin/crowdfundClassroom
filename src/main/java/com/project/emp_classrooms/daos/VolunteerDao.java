@@ -1,13 +1,16 @@
 package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.entities.Volunteer;
+import com.project.emp_classrooms.repositories.ProjectRepository;
 import com.project.emp_classrooms.repositories.VolunteerRepository;
 
 @Component
@@ -15,6 +18,25 @@ public class VolunteerDao {
 	
 	@Autowired
 	VolunteerRepository volunteerRepository;
+	
+	@Autowired
+	ProjectDao projectDao;
+	
+//	The volunteer and project both should already be existing in the DB. The volunteer sees a list of projects on 
+//	his page which he can choose to approve. So the volunteer's ID and the ID of the project he chooses are grabbed.
+	public void approveProject(int volunteerId, int projectId) {
+		Volunteer volunteer = findVolunteerById(volunteerId);
+		Project project = projectDao.findProjectById(projectId);
+		
+		project.setIsApproved(true);
+		project.setVolunteer(volunteer);
+		projectDao.createProject(project);
+		
+		if(!volunteer.getProjects().contains(project)) {
+			volunteer.getProjects().add(project);
+			volunteerRepository.save(volunteer);
+		}
+	}
 	
 	public Volunteer createVolunteer(Volunteer volunteer) {
 		return volunteerRepository.save(volunteer);
