@@ -83,7 +83,9 @@ public class TestDao implements CommandLineRunner {
 		v1.setFirstName("vol_fname");
 		v1.setLastName("vol_Lname");
 		v1 = volunteerDao.createVolunteer(v1);
+		
 		volunteerDao.approveProject(v1.getId(), p1.getId());
+		volunteerDao.approveProject(v1.getId(), p2.getId());
 		
 		Donor d1 = new Donor();
 		d1.setFirstName("testDonor1");
@@ -99,7 +101,6 @@ public class TestDao implements CommandLineRunner {
 		donationDao.donateToProject(d2.getId(), p1.getId(), 110.0);
 		donationDao.donateToProject(d1.getId(), p1.getId(), 50.0);
 		donationDao.donateToProject(d1.getId(), p2.getId(), 90.0);
-		
 		
 	}
 	

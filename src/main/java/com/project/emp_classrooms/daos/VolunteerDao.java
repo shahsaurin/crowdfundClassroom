@@ -65,11 +65,11 @@ public class VolunteerDao {
 		return null;
 	}
 	
-	void deleteVolunteerById(int id) {
+	public void deleteVolunteerById(int id) {
 		volunteerRepository.deleteById(id);
 	}
 	
-	void deleteAllVolunteers() {
+	public void deleteAllVolunteers() {
 		volunteerRepository.deleteAll();
 	}
 	

@@ -70,11 +70,11 @@ public class TeacherDao {
 		return null;
 	}
 	
-	void deleteTeacherById(int id) {
+	public void deleteTeacherById(int id) {
 		teacherRepository.deleteById(id);
 	}
 	
-	void deleteAllTeachers() {
+	public void deleteAllTeachers() {
 		teacherRepository.deleteAll();
 	}
 	

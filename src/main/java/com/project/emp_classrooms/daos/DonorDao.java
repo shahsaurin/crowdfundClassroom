@@ -43,18 +43,19 @@ public class DonorDao {
 			oldDonor.setFirstName(updatedDonor.getFirstName());
 			oldDonor.setLastName(updatedDonor.getLastName());
 			oldDonor.setDob(updatedDonor.getDob());
-			oldDonor.setContributedProjects(updatedDonor.getContributedProjects());
-			oldDonor.setTotalAmountDonated(updatedDonor.getTotalAmountDonated());
+//			oldDonor.setContributedProjects(updatedDonor.getContributedProjects());
+//			oldDonor.setTotalAmountDonated(updatedDonor.getTotalAmountDonated());
 			return donorRepository.save(oldDonor);
 		}
 		return null;
 	}
 	
-	void deleteDonorById(int id) {
+	public void deleteDonorById(int id) {
 		donorRepository.deleteById(id);
 	}
 	
-	void deleteAllDonors() {
+//	Not needed for REST API:
+	public void deleteAllDonors() {
 		donorRepository.deleteAll();
 	}
 	
@@ -62,7 +63,7 @@ public class DonorDao {
 	
 	public void test() {
 //		Delete all donors:
-		deleteAllDonors();
+//		deleteAllDonors();
 		
 		Donor d1 = new Donor();
 		d1.setContributedProjects(7);
