@@ -1,5 +1,6 @@
 package com.project.emp_classrooms.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -44,6 +45,7 @@ public class Project {
 //	Deafult constructor:
 	public Project() {
 		isApproved = false;
+		donations = new ArrayList<Donation>();
 	}
 	
 	public int getId() {

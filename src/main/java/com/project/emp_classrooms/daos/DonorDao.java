@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Donor;
+import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.repositories.DonorRepository;
 
 @Component
@@ -16,9 +18,9 @@ public class DonorDao {
 	@Autowired
 	DonorRepository donorRepository;
 	
-	public void donateToProject(int donorId, int projectId, double amount) {
-		
-	}
+	@Autowired
+	ProjectDao projectDao;
+	
 	
 	public Donor createDonor(Donor donor) {
 		return donorRepository.save(donor);

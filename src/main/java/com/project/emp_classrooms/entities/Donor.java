@@ -1,5 +1,6 @@
 package com.project.emp_classrooms.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,10 +13,16 @@ import javax.persistence.OneToMany;
 public class Donor extends Person {
 	
 	private int contributedProjects;
-	private int totalAmountDonated;
+	private double totalAmountDonated;
 	
 	@OneToMany(mappedBy="donor")
 	private List<Donation> donations;
+	
+//	Default constructor:
+	public Donor() {
+		donations = new ArrayList<Donation>();
+	}
+	
 	
 	public int getContributedProjects() {
 		return contributedProjects;
@@ -25,11 +32,11 @@ public class Donor extends Person {
 		this.contributedProjects = contributedProjects;
 	}
 
-	public int getTotalAmountDonated() {
+	public double getTotalAmountDonated() {
 		return totalAmountDonated;
 	}
 
-	public void setTotalAmountDonated(int totalAmountDonated) {
+	public void setTotalAmountDonated(double totalAmountDonated) {
 		this.totalAmountDonated = totalAmountDonated;
 	}
 
