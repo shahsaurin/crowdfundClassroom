@@ -1,6 +1,7 @@
 package com.project.emp_classrooms.daos;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,20 @@ public class ProjectDao {
 		return savedProject;
 	
 	}
+	
+//	TO BE TESTED:
+	public List<Project> findAllApprovedProjects() {
+		List<Project> allProjects = (List<Project>) projectRepository.findAll();
+		List<Project> approvedProjects = new ArrayList<Project>();
+		for (Iterator<Project> iterator = allProjects.iterator(); iterator.hasNext();) {
+			Project project = (Project) iterator.next();
+			if(project.getIsApproved()) {
+				approvedProjects.add(project);
+			}
+		}
+		return approvedProjects; 
+	}
+	
 	
 	public Project createProject(Project project) {
 		return projectRepository.save(project);
