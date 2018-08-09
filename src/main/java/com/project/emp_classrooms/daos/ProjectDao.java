@@ -102,11 +102,11 @@ public class ProjectDao {
 		return null;
 	}
 	
-	void deleteProjectById(int id) {
+	public void deleteProjectById(int id) {
 		projectRepository.deleteById(id);
 	}
 	
-	void deleteAllProjects() {
+	public void deleteAllProjects() {
 		projectRepository.deleteAll();
 	}
 	

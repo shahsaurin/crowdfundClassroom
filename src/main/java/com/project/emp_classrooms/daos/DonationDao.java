@@ -95,11 +95,11 @@ public class DonationDao {
 		return null;
 	}
 	
-	void deleteDonationById(int id) {
+	public void deleteDonationById(int id) {
 		donationRepository.deleteById(id);
 	}
 	
-	void deleteAllDonations() {
+	public void deleteAllDonations() {
 		donationRepository.deleteAll();
 	}
 	

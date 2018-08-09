@@ -49,11 +49,11 @@ public class SchoolDao {
 		return null;
 	}
 	
-	void deleteSchoolById(int id) {
+	public void deleteSchoolById(int id) {
 		schoolRepository.deleteById(id);
 	}
 	
-	void deleteAllSchools() {
+	public void deleteAllSchools() {
 		
 //		Set 'school' field in Teacher as NULL and then set the 'List' of teachers in school as NULL:
 		List<School> schools = (List<School>) schoolRepository.findAll();
