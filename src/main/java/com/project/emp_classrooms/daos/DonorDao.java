@@ -7,9 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Donor;
-import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.repositories.DonorRepository;
 
 @Component

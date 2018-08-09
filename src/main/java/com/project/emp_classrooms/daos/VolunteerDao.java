@@ -1,7 +1,6 @@
 package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.entities.Volunteer;
-import com.project.emp_classrooms.repositories.ProjectRepository;
 import com.project.emp_classrooms.repositories.VolunteerRepository;
 
 @Component

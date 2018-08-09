@@ -12,8 +12,6 @@ import com.project.emp_classrooms.entities.Donor;
 import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.repositories.DonationRepository;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 @Component
 public class DonationDao {
 
