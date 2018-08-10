@@ -76,6 +76,23 @@ public class ProjectDao {
 		return approvedProjects; 
 	}
 	
+	public List<Project> findAllProjectsBySearchQueryAndApproval(String searchQuery, boolean approvalStatus) {
+		List<Project> projectsByApprovals = findAllProjectsByApproval(approvalStatus);
+		List<Project> projectsBySearchQuery = new ArrayList<Project>();
+		
+		for (Iterator<Project> iterator = projectsByApprovals.iterator(); iterator.hasNext();) {
+			Project project = (Project) iterator.next();
+			if(project.getShortDescription().contains(searchQuery) || 
+					project.getSynopsis().contains(searchQuery) || 
+					project.getTitle().contains(searchQuery)) {
+				
+				projectsBySearchQuery.add(project);
+			}
+		}
+		return projectsBySearchQuery;
+	}
+	
+	
 	
 //	BASIC CRUD:
 	

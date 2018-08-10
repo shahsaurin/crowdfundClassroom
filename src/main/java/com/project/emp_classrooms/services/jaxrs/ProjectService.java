@@ -31,15 +31,24 @@ public class ProjectService {
 		return projectDao.createProjectForSchool(teacherId, project);
 	}
 	
-//	Tested OK: 
-//	Find all project: 1) Approved, 2) Non-approved, 3) All (default/without query params)
+//	To be tested!!: 
+//	Find all project: 1) Approved, 2) Non-approved, 3) Approved with search query, 4) Approved without search query,
+//	5) Non-approved with search query, 6) Non-approved without search query, 
+//	7) All (default/without query params)
 	@GetMapping("/api/project")
 	public List<Project> findProjects(
-			@RequestParam(name="isApproved", required=false) String isApproved) {
+			@RequestParam(name="isApproved", required=false) String isApproved,
+			@RequestParam(name="searchQuery", required=false) String searchQuery) {
 		
 		if(isApproved != null && isApproved.equals("true")) {
+			if(searchQuery != null) {
+				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery, true);
+			}
 			return projectDao.findAllProjectsByApproval(true);
-		} else if(isApproved != null && isApproved.equals("false")){ 
+		} else if(isApproved != null && isApproved.equals("false")){
+			if(searchQuery != null) {
+				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery, false);
+			}
 			return projectDao.findAllProjectsByApproval(false); 
 		} 
 		return projectDao.findAllProjects();
