@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.emp_classrooms.daos.VolunteerDao;
@@ -21,6 +22,12 @@ public class VolunteerService {
 
 //	Advanced Use cases:	
 
+	@PutMapping("/api/volunteer/{vid}/approveProject")
+	public void approveProject(
+			@PathVariable("vid") int volunteerId,
+			@RequestParam(name="projectId", required=true) int projectId) {
+		volunteerDao.approveProject(volunteerId, projectId);
+	}
 	
 	
 	

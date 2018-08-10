@@ -32,9 +32,13 @@ public class VolunteerDao {
 		
 		if(!volunteer.getProjects().contains(project)) {
 			volunteer.getProjects().add(project);
+			volunteer.setProjectsApproved(volunteer.getProjectsApproved() + 1);
 			volunteerRepository.save(volunteer);
 		}
 	}
+	
+	
+//	BASIC CRUD:
 	
 	public Volunteer createVolunteer(Volunteer volunteer) {
 		return volunteerRepository.save(volunteer);

@@ -41,6 +41,9 @@ public class TeacherDao {
 		return savedTeacher;		
 	}
 	
+	
+//	BASIC CRUD:
+	
 	public Teacher createTeacher(Teacher teacher) {
 		return teacherRepository.save(teacher);
 	}

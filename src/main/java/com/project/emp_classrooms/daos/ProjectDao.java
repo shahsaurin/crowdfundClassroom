@@ -37,6 +37,7 @@ public class ProjectDao {
 		Teacher teacher = teacherRepository.findById(teacherId).get();
 		School school = teacher.getSchool();
 		
+		project.setCostToComplete(project.getTotalPrice());
 		project.setTeacher(teacher);
 		project.setSchool(school);
 		Project savedProject = projectRepository.save(project);
@@ -52,26 +53,26 @@ public class ProjectDao {
 		}
 		school.getProjects().add(savedProject);
 		schoolRepository.save(school);
-		
-//		Also Add the project 'Volunteer' like School and Teacher:
-		
+				
 		return savedProject;
 	
 	}
 	
-//	TO BE TESTED:
-	public List<Project> findAllApprovedProjects() {
+//	TESTED OK:
+	public List<Project> findAllProjectsByApproval(boolean approvalStatus) {
 		List<Project> allProjects = (List<Project>) projectRepository.findAll();
 		List<Project> approvedProjects = new ArrayList<Project>();
 		for (Iterator<Project> iterator = allProjects.iterator(); iterator.hasNext();) {
 			Project project = (Project) iterator.next();
-			if(project.getIsApproved()) {
+			if(project.getIsApproved() == approvalStatus) {
 				approvedProjects.add(project);
 			}
 		}
 		return approvedProjects; 
 	}
 	
+	
+//	BASIC CRUD:
 	
 	public Project createProject(Project project) {
 		return projectRepository.save(project);
