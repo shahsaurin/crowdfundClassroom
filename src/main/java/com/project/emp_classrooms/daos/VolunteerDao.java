@@ -28,13 +28,16 @@ public class VolunteerDao {
 		
 		project.setIsApproved(true);
 		project.setVolunteer(volunteer);
-		projectDao.createProject(project);
+//		projectDao.createProject(project);
 		
 		if(!volunteer.getProjects().contains(project)) {
 			volunteer.getProjects().add(project);
 			volunteer.setProjectsApproved(volunteer.getProjectsApproved() + 1);
-			volunteerRepository.save(volunteer);
+//			volunteerRepository.save(volunteer);
 		}
+		
+		projectDao.createProject(project);
+		volunteerRepository.save(volunteer);
 	}
 	
 	
