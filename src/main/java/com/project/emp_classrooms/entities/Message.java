@@ -17,7 +17,7 @@ import com.project.emp_classrooms.enums.User;
 
 @Entity
 public class Message {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -39,6 +39,12 @@ public class Message {
 	@JsonIgnore
 	private Person sender;					// Reference of type of parent class
 
+	
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", description=" + description + ", lastUpdated=" + lastUpdated
+				+ ", messageCategory=" + messageCategory + ", recipient=" + recipient + ", sender=" + sender + "]";
+	}
 	
 	
 	public int getId() {

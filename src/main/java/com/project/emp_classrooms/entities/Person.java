@@ -1,6 +1,7 @@
 package com.project.emp_classrooms.entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
@@ -30,6 +31,10 @@ public class Person {
 	@OneToMany(mappedBy="sender")
 	private List<Message> messagesSent;						// CONFIRM IF THIS IS A GOOD WAY TO DO
 	
+	public Person() {
+		messagesReceived = new ArrayList<Message>();
+		messagesSent = new ArrayList<Message>();
+	}
 
 	public int getId() {
 		return id;
