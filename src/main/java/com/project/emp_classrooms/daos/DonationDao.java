@@ -24,6 +24,8 @@ public class DonationDao {
 	@Autowired
 	ProjectDao projectDao;
 	
+//	Advanced use cases:
+	
 	public void donateToProject(int donorId, int projectId, double amount) {
 		Donor donor = donorDao.findDonorById(donorId);
 		Project project = projectDao.findProjectById(projectId);
@@ -68,6 +70,8 @@ public class DonationDao {
 		projectDao.createProject(project);	
 	}
 	
+	
+//	BASIC CRUD:
 	
 	public Donation createDonation(Donation donation) {
 		return donationRepository.save(donation);

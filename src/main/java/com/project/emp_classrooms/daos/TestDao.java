@@ -97,10 +97,10 @@ public class TestDao implements CommandLineRunner {
 		d2.setLastName("testD_Lname2");
 		d2 = donorDao.createDonor(d2);
 		
-		donationDao.donateToProject(d1.getId(), p1.getId(), 230.0);
-		donationDao.donateToProject(d2.getId(), p1.getId(), 110.0);
-		donationDao.donateToProject(d1.getId(), p1.getId(), 50.0);
-		donationDao.donateToProject(d1.getId(), p2.getId(), 90.0);
+//		donationDao.donateToProject(d1.getId(), p1.getId(), 230.0);
+//		donationDao.donateToProject(d2.getId(), p1.getId(), 110.0);
+//		donationDao.donateToProject(d1.getId(), p1.getId(), 50.0);
+//		donationDao.donateToProject(d1.getId(), p2.getId(), 90.0);
 		
 	}
 	
