@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.entities.School;
 import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.repositories.SchoolRepository;
@@ -20,6 +21,12 @@ public class SchoolDao {
 	
 	@Autowired
 	TeacherRepository teacherRepository;
+	
+	@Autowired
+	ProjectDao projectDao;
+	
+	@Autowired
+	TeacherDao teacherDao;
 	
 	public School createSchool(School school) {
 		return schoolRepository.save(school);
@@ -49,26 +56,33 @@ public class SchoolDao {
 		return null;
 	}
 	
-	public void deleteSchoolById(int id) {
-		schoolRepository.deleteById(id);
+//	Delete the school, all its teachers, all its projects.........'Donation' stays.
+	public void deleteSchoolById(int schoolId) {
+		Optional<School> optSchool = schoolRepository.findById(schoolId);
+		if(optSchool.isPresent()) {
+			School school = optSchool.get();
+			
+			List<Project> projects = school.getProjects();
+			for (Iterator<Project> iterator = projects.iterator(); iterator.hasNext();) {
+				Project project = (Project) iterator.next();
+				projectDao.deleteProjectById(project.getId());
+			}
+			
+			List<Teacher> teachers = school.getTeachers();
+			for (Iterator<Teacher> iterator = teachers.iterator(); iterator.hasNext();) {
+				Teacher teacher = (Teacher) iterator.next();
+				teacherDao.deleteTeacherById(teacher.getId());
+			}
+			schoolRepository.deleteById(schoolId);
+		}
 	}
 	
 	public void deleteAllSchools() {
-		
-//		Set 'school' field in Teacher as NULL and then set the 'List' of teachers in school as NULL:
 		List<School> schools = (List<School>) schoolRepository.findAll();
 		for (Iterator<School> iterator = schools.iterator(); iterator.hasNext();) {
 			School school = (School) iterator.next();
-			List<Teacher> teachers = school.getTeachers();
-			for (Iterator<Teacher> iterator2 = teachers.iterator(); iterator2.hasNext();) {
-				Teacher teacher = (Teacher) iterator2.next();
-				teacher.setSchool(null);
-				teacherRepository.save(teacher);
-			}
-			school.setTeachers(null);
-			schoolRepository.save(school);
+			deleteSchoolById(school.getId());
 		}
-		schoolRepository.deleteAll();
 	}
 	
 	

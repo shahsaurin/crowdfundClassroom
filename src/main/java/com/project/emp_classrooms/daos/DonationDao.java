@@ -111,15 +111,15 @@ public class DonationDao {
 	
 	public void test() {
 //		Delete all donations:
-		deleteAllDonations();
-		
-		Donation d1 = new Donation();
-		d1.setAmount(100);
-		
-		Donation d2 = createDonation(d1);
-		
-		d1.setAmount(150);
-		updateDonation(d2.getId(), d1);
+//		deleteAllDonations();
+//		
+//		Donation d1 = new Donation();
+//		d1.setAmount(100);
+//		
+//		Donation d2 = createDonation(d1);
+//		
+//		d1.setAmount(150);
+//		updateDonation(d2.getId(), d1);
 		
 	}
 

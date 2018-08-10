@@ -1,14 +1,18 @@
 package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Message;
 import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.entities.Volunteer;
+import com.project.emp_classrooms.repositories.MessageRepository;
+import com.project.emp_classrooms.repositories.ProjectRepository;
 import com.project.emp_classrooms.repositories.VolunteerRepository;
 
 @Component
@@ -18,7 +22,13 @@ public class VolunteerDao {
 	VolunteerRepository volunteerRepository;
 	
 	@Autowired
+	ProjectRepository projectRepository;
+	
+	@Autowired
 	ProjectDao projectDao;
+	
+	@Autowired
+	MessageRepository messageRepository;
 	
 //	The volunteer and project both should already be existing in the DB. The volunteer sees a list of projects on 
 //	his page which he can choose to approve. So the volunteer's ID and the ID of the project he chooses are grabbed.
@@ -72,12 +82,45 @@ public class VolunteerDao {
 		return null;
 	}
 	
-	public void deleteVolunteerById(int id) {
-		volunteerRepository.deleteById(id);
+//	Delete only the Volunteer, make fields that refer it as 'NULL':
+	public void deleteVolunteerById(int volunteerId) {
+		Optional<Volunteer> optVolunteer = volunteerRepository.findById(volunteerId);
+		if(optVolunteer.isPresent()) {
+			Volunteer volunteer = optVolunteer.get();
+			
+			List<Project> projects = volunteer.getProjects();
+			for (Iterator<Project> iterator = projects.iterator(); iterator.hasNext();) {
+				Project project = (Project) iterator.next();
+				project.setVolunteer(null);
+				projectRepository.save(project);
+			}
+			
+			List<Message> messagesReceived = volunteer.getMessagesReceived();
+			for (Iterator<Message> iterator = messagesReceived.iterator(); iterator.hasNext();) {
+				Message receivedMessage = (Message) iterator.next();
+				receivedMessage.setRecipient(null);
+				messageRepository.save(receivedMessage);
+			}
+			
+			List<Message> messagesSent = volunteer.getMessagesSent();
+			for (Iterator<Message> iterator = messagesSent.iterator(); iterator.hasNext();) {
+				Message sentMessage = (Message) iterator.next();
+				sentMessage.setSender(null);;
+				messageRepository.save(sentMessage);
+			}
+			
+			volunteerRepository.deleteById(volunteerId);
+		}
+		
 	}
 	
+	
 	public void deleteAllVolunteers() {
-		volunteerRepository.deleteAll();
+		List<Volunteer> volunteers = (List<Volunteer>) volunteerRepository.findAll();
+		for (Iterator<Volunteer> iterator = volunteers.iterator(); iterator.hasNext();) {
+			Volunteer volunteer = (Volunteer) iterator.next();
+			deleteVolunteerById(volunteer.getId());
+		}
 	}
 	
 	

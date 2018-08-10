@@ -7,8 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import javax.sound.midi.Receiver;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -108,11 +106,11 @@ public class MessageDao {
 		return null;
 	}
 	
-	void deleteMessageById(int id) {
+	public void deleteMessageById(int id) {
 		messageRepository.deleteById(id);
 	}
 	
-	void deleteAllMessages() {
+	public void deleteAllMessages() {
 		messageRepository.deleteAll();
 	}
 	

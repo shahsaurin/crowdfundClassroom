@@ -1,14 +1,19 @@
 package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Donor;
+import com.project.emp_classrooms.entities.Message;
+import com.project.emp_classrooms.repositories.DonationRepository;
 import com.project.emp_classrooms.repositories.DonorRepository;
+import com.project.emp_classrooms.repositories.MessageRepository;
 
 @Component
 public class DonorDao {
@@ -18,6 +23,12 @@ public class DonorDao {
 	
 	@Autowired
 	ProjectDao projectDao;
+	
+	@Autowired
+	DonationRepository donationRepository;
+	
+	@Autowired
+	MessageRepository messageRepository;
 	
 	
 	public Donor createDonor(Donor donor) {
@@ -50,13 +61,43 @@ public class DonorDao {
 		return null;
 	}
 	
-	public void deleteDonorById(int id) {
-		donorRepository.deleteById(id);
+	public void deleteDonorById(int donorId) {
+		Optional<Donor> optDonor = donorRepository.findById(donorId);
+		if(optDonor.isPresent()) {
+			Donor donor = optDonor.get();
+			
+			List<Donation> donations = donor.getDonations();
+			for (Iterator<Donation> iterator = donations.iterator(); iterator.hasNext();) {
+				Donation donation = (Donation) iterator.next();
+				donation.setDonor(null);
+				donationRepository.save(donation);
+			}
+			
+			List<Message> messagesReceived = donor.getMessagesReceived();
+			for (Iterator<Message> iterator = messagesReceived.iterator(); iterator.hasNext();) {
+				Message receivedMessage = (Message) iterator.next();
+				receivedMessage.setRecipient(null);
+				messageRepository.save(receivedMessage);
+			}
+			
+			List<Message> messagesSent = donor.getMessagesSent();
+			for (Iterator<Message> iterator = messagesSent.iterator(); iterator.hasNext();) {
+				Message sentMessage = (Message) iterator.next();
+				sentMessage.setSender(null);;
+				messageRepository.save(sentMessage);
+			}
+			
+			donorRepository.deleteById(donorId);
+		}
 	}
 	
 //	Not needed for REST API:
 	public void deleteAllDonors() {
-		donorRepository.deleteAll();
+		List<Donor> donors = (List<Donor>) donorRepository.findAll();
+		for (Iterator<Donor> iterator = donors.iterator(); iterator.hasNext();) {
+			Donor donor = (Donor) iterator.next();
+			deleteDonorById(donor.getId());
+		}
 	}
 	
 	

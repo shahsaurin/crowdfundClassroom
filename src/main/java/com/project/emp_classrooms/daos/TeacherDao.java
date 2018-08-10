@@ -2,14 +2,19 @@ package com.project.emp_classrooms.daos;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Message;
+import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.entities.School;
 import com.project.emp_classrooms.entities.Teacher;
+import com.project.emp_classrooms.repositories.MessageRepository;
+import com.project.emp_classrooms.repositories.ProjectRepository;
 import com.project.emp_classrooms.repositories.SchoolRepository;
 import com.project.emp_classrooms.repositories.TeacherRepository;
 
@@ -21,6 +26,12 @@ public class TeacherDao {
 	
 	@Autowired
 	SchoolRepository schoolRepository;
+	
+	@Autowired
+	ProjectRepository projectRepository;
+	
+	@Autowired
+	MessageRepository messageRepository;
 	
 //	For use on web app: On create 'New Teacher' page.
 //	Assumes that school already exists on DB (found by 'name'), teacher will be created.
@@ -73,12 +84,43 @@ public class TeacherDao {
 		return null;
 	}
 	
-	public void deleteTeacherById(int id) {
-		teacherRepository.deleteById(id);
+//	Deletes only the teacher:
+	public void deleteTeacherById(int teacherId) {
+		Optional<Teacher> optTeacher = teacherRepository.findById(teacherId);
+		if(optTeacher.isPresent()) {
+			Teacher teacher = optTeacher.get();
+			
+			List<Project> projects = teacher.getProjects();
+			for (Iterator<Project> iterator = projects.iterator(); iterator.hasNext();) {
+				Project project = (Project) iterator.next();
+				project.setTeacher(null);
+				projectRepository.save(project);
+			}
+			
+			List<Message> messagesReceived = teacher.getMessagesReceived();
+			for (Iterator<Message> iterator = messagesReceived.iterator(); iterator.hasNext();) {
+				Message receivedMessage = (Message) iterator.next();
+				receivedMessage.setRecipient(null);
+				messageRepository.save(receivedMessage);
+			}
+			
+			List<Message> messagesSent = teacher.getMessagesSent();
+			for (Iterator<Message> iterator = messagesSent.iterator(); iterator.hasNext();) {
+				Message sentMessage = (Message) iterator.next();
+				sentMessage.setSender(null);;
+				messageRepository.save(sentMessage);
+			}
+			
+			teacherRepository.deleteById(teacherId);
+		}
 	}
 	
 	public void deleteAllTeachers() {
-		teacherRepository.deleteAll();
+		List<Teacher> teachers = (List<Teacher>) teacherRepository.findAll();
+		for (Iterator<Teacher> iterator = teachers.iterator(); iterator.hasNext();) {
+			Teacher teacher = (Teacher) iterator.next();
+			deleteTeacherById(teacher.getId());
+		}
 	}
 	
 	

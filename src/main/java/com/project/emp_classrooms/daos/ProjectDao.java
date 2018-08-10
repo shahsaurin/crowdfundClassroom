@@ -8,9 +8,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Project;
 import com.project.emp_classrooms.entities.School;
 import com.project.emp_classrooms.entities.Teacher;
+import com.project.emp_classrooms.repositories.DonationRepository;
 import com.project.emp_classrooms.repositories.ProjectRepository;
 import com.project.emp_classrooms.repositories.SchoolRepository;
 import com.project.emp_classrooms.repositories.TeacherRepository;
@@ -29,6 +31,9 @@ public class ProjectDao {
 	
 	@Autowired
 	SchoolRepository schoolRepository;
+	
+	@Autowired
+	DonationRepository donationRepository;
 
 
 //	A teacher creates a Project, which becomes a Project of the school he/she is in:
@@ -103,12 +108,28 @@ public class ProjectDao {
 		return null;
 	}
 	
-	public void deleteProjectById(int id) {
-		projectRepository.deleteById(id);
+//	Deletes only the project:
+	public void deleteProjectById(int projectId) {
+		Optional<Project> optProject = projectRepository.findById(projectId);
+		if(optProject.isPresent()) {
+			Project project = optProject.get();
+			
+			List<Donation> donations = project.getDonations();
+			for (Iterator<Donation> iterator = donations.iterator(); iterator.hasNext();) {
+				Donation donation = (Donation) iterator.next();
+				donation.setProject(null);
+				donationRepository.save(donation);
+			}
+			projectRepository.deleteById(projectId);
+		}
 	}
 	
 	public void deleteAllProjects() {
-		projectRepository.deleteAll();
+		List<Project> projects = (List<Project>) projectRepository.findAll();
+		for (Iterator<Project> iterator = projects.iterator(); iterator.hasNext();) {
+			Project project = (Project) iterator.next();
+			deleteProjectById(project.getId());
+		}
 	}
 	
 	
