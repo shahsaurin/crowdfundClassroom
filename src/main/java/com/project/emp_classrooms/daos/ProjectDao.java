@@ -82,9 +82,9 @@ public class ProjectDao {
 		
 		for (Iterator<Project> iterator = projectsByApprovals.iterator(); iterator.hasNext();) {
 			Project project = (Project) iterator.next();
-			if(project.getShortDescription().contains(searchQuery) || 
-					project.getSynopsis().contains(searchQuery) || 
-					project.getTitle().contains(searchQuery)) {
+			if(project.getShortDescription().toLowerCase().contains(searchQuery) || 
+					project.getSynopsis().toLowerCase().contains(searchQuery) || 
+					project.getTitle().toLowerCase().contains(searchQuery)) {
 				
 				projectsBySearchQuery.add(project);
 			}

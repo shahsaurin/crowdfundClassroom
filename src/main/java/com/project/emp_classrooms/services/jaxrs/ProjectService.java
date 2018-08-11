@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.emp_classrooms.daos.ProjectDao;
 import com.project.emp_classrooms.entities.Project;
-import com.project.emp_classrooms.entities.Teacher;
 
 @RestController
 public class ProjectService {
@@ -35,11 +34,13 @@ public class ProjectService {
 //	Find all project: 1) Approved, 2) Non-approved, 3) Approved with search query, 4) Approved without search query,
 //	5) Non-approved with search query, 6) Non-approved without search query, 
 //	7) All (default/without query params)
+//	Example: /api/project?isApproved=true&&searchQuery=lab
 	@GetMapping("/api/project")
 	public List<Project> findProjects(
 			@RequestParam(name="isApproved", required=false) String isApproved,
 			@RequestParam(name="searchQuery", required=false) String searchQuery) {
 		
+		searchQuery = searchQuery.toLowerCase();
 		if(isApproved != null && isApproved.equals("true")) {
 			if(searchQuery != null) {
 				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery, true);
