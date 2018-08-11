@@ -77,6 +77,14 @@ public class VolunteerDao {
 			oldVolunteer.setLastName(updatedVolunteer.getLastName());
 			oldVolunteer.setDob(updatedVolunteer.getDob());
 			oldVolunteer.setProjectsApproved(updatedVolunteer.getProjectsApproved());
+			
+			oldVolunteer.setCity(updatedVolunteer.getCity());
+			oldVolunteer.setEmail(updatedVolunteer.getEmail());
+			oldVolunteer.setUsername(updatedVolunteer.getUsername());
+			oldVolunteer.setPassword(updatedVolunteer.getPassword());
+			oldVolunteer.setState(updatedVolunteer.getState());
+			oldVolunteer.setZip(updatedVolunteer.getZip());
+			oldVolunteer.setPhone(updatedVolunteer.getPhone());
 			return volunteerRepository.save(oldVolunteer);
 		}
 		return null;
@@ -127,7 +135,7 @@ public class VolunteerDao {
 	
 	public void test() {
 //		Delete all volunteers:
-		deleteAllVolunteers();
+//		deleteAllVolunteers();
 		
 		Volunteer d1 = new Volunteer();
 		d1.setProjectsApproved(11);

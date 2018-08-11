@@ -79,6 +79,14 @@ public class TeacherDao {
 			oldTeacher.setLastName(updatedTeacher.getLastName());
 			oldTeacher.setDob(updatedTeacher.getDob());
 			oldTeacher.setProjectsInitiated(updatedTeacher.getProjectsInitiated());
+			oldTeacher.setCity(updatedTeacher.getCity());
+			oldTeacher.setEmail(updatedTeacher.getEmail());
+			oldTeacher.setUsername(updatedTeacher.getUsername());
+			oldTeacher.setPassword(updatedTeacher.getPassword());
+			oldTeacher.setState(updatedTeacher.getState());
+			oldTeacher.setZip(updatedTeacher.getZip());
+			oldTeacher.setPhone(updatedTeacher.getPhone());
+			
 			return teacherRepository.save(oldTeacher);
 		}
 		return null;
@@ -127,7 +135,7 @@ public class TeacherDao {
 	
 	public void test() {
 //		Delete all teachers:
-		deleteAllTeachers();
+//		deleteAllTeachers();
 		
 		Teacher t1 = new Teacher();
 		t1.setProjectsInitiated(15);

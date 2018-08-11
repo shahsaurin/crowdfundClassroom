@@ -176,7 +176,7 @@ public class ProjectDao {
 	
 	public void test() {
 //		Delete all projects:
-		deleteAllProjects();
+//		deleteAllProjects();
 		
 		Project p1 = new Project();
 		p1.setTitle("Laptops needed");

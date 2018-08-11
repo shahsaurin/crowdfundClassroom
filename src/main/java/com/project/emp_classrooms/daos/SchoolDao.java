@@ -89,7 +89,7 @@ public class SchoolDao {
 	
 	public void test() {
 //		Delete all schools:
-		deleteAllSchools();
+//		deleteAllSchools();
 		
 		School s1 = new School();
 		s1.setName("NEU");

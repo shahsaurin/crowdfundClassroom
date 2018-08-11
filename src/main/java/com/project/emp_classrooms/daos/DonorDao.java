@@ -54,6 +54,14 @@ public class DonorDao {
 			oldDonor.setFirstName(updatedDonor.getFirstName());
 			oldDonor.setLastName(updatedDonor.getLastName());
 			oldDonor.setDob(updatedDonor.getDob());
+			oldDonor.setCity(updatedDonor.getCity());
+			oldDonor.setEmail(updatedDonor.getEmail());
+			oldDonor.setUsername(updatedDonor.getUsername());
+			oldDonor.setPassword(updatedDonor.getPassword());
+			oldDonor.setState(updatedDonor.getState());
+			oldDonor.setZip(updatedDonor.getZip());
+			oldDonor.setPhone(updatedDonor.getPhone());
+			
 //			oldDonor.setContributedProjects(updatedDonor.getContributedProjects());
 //			oldDonor.setTotalAmountDonated(updatedDonor.getTotalAmountDonated());
 			return donorRepository.save(oldDonor);

@@ -43,6 +43,14 @@ public class TestDao implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		donorDao.deleteAllDonors();
+		volunteerDao.deleteAllVolunteers();
+		teacherDao.deleteAllTeachers();
+		schoolDao.deleteAllSchools();
+		projectDao.deleteAllProjects();
+		donationDao.deleteAllDonations();
+		messageDao.deleteAllMessages();
+		
 		donorDao.test();
 		volunteerDao.test();
 		teacherDao.test();
