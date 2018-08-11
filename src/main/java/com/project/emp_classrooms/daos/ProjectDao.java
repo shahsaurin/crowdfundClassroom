@@ -1,12 +1,19 @@
 package com.project.emp_classrooms.daos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Project;
@@ -35,6 +42,22 @@ public class ProjectDao {
 	@Autowired
 	DonationRepository donationRepository;
 
+	String BASE_URL = "https://api.donorschoose.org/common/json_feed.html?keywords=SEARCHQUERY&APIKey=DONORSCHOOSE";
+	
+	
+	public ResponseEntity<String> fetchProjectsFromDonorschoose(String searchQuery) {
+	        String urlParamString = BASE_URL.replace("SEARCHQUERY", searchQuery);
+	        RestTemplate restTemplate = new RestTemplate();
+	        HttpHeaders headers = new HttpHeaders();
+//	        headers.set("Page-Size", String.valueOf(cardCriteria.getPageSize()));
+	        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+//	        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+//	                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+	        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+	        return restTemplate.exchange(urlParamString, HttpMethod.GET, entity, String.class);
+	}
+	
+	
 
 //	A teacher creates a Project, which becomes a Project of the school he/she is in:
 //	Teacher should be already existing in the DB. Project will be created.
