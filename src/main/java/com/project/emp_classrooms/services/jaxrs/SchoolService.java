@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.emp_classrooms.daos.SchoolDao;
@@ -34,7 +35,11 @@ public class SchoolService {
 	}
 	
 	@GetMapping("/api/school")
-	public List<School> findAllSchools() {
+	public List<School> findSchools(
+			@RequestParam(name="schoolName", required=false) String schoolName) {
+		if(schoolName != null) {
+			return schoolDao.findSchoolByName(schoolName);
+		}
 		return schoolDao.findAllSchools();
 	}
 	
@@ -42,7 +47,7 @@ public class SchoolService {
 	public School findSchoolById(@PathVariable("sid") int schoolId) {
 		return schoolDao.findSchoolById(schoolId);
 	}
-	
+		
 	@PutMapping("/api/school/{sid}")
 	public School updateSchool(
 			@PathVariable("sid") int schoolId,

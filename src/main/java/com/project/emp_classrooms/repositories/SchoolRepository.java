@@ -12,7 +12,7 @@ public interface SchoolRepository
 	extends CrudRepository<School, Integer>{
 	
 	@Query("SELECT s FROM School s WHERE s.name=:sch_name")
-	public List<School> findSchoolByName(@Param("sch_name") String name);
+	public List<School> findSchoolsByName(@Param("sch_name") String name);
 
 
 }

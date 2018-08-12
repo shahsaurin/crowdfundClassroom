@@ -44,6 +44,10 @@ public class SchoolDao {
 		return null;
 	}
 	
+	public List<School> findSchoolByName(String name) {
+		return schoolRepository.findSchoolsByName(name);
+	}
+	
 	public School updateSchool(int id, School updatedSchool) {
 		Optional<School> optSchool = schoolRepository.findById(id);
 		if(optSchool.isPresent()) {
