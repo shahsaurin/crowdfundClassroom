@@ -3,6 +3,7 @@ package com.project.emp_classrooms.services.jaxrs;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.project.emp_classrooms.daos.DonorDao;
 import com.project.emp_classrooms.entities.Donor;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class DonorService {
 
 	@Autowired
