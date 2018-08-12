@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Donor;
 import com.project.emp_classrooms.entities.Message;
+import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.repositories.DonationRepository;
 import com.project.emp_classrooms.repositories.DonorRepository;
 import com.project.emp_classrooms.repositories.MessageRepository;
@@ -45,6 +46,14 @@ public class DonorDao {
 			return optDonor.get();
 		}
 		return null;
+	}
+	
+	public Donor findDonorByCredentials(String username, String password) throws Exception {
+		List<Donor> donors = (List<Donor>) donorRepository.findDonorByCredentials(username, password);
+		if(donors.isEmpty()) {
+			throw new Exception("User not found!");
+		}
+		return donors.get(0);
 	}
 	
 	public Donor updateDonor(int id, Donor updatedDonor) {

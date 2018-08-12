@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.emp_classrooms.daos.VolunteerDao;
+import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.entities.Volunteer;
 
 @RestController
@@ -30,6 +31,13 @@ public class VolunteerService {
 			@RequestParam(name="projectId", required=true) int projectId) {
 		volunteerDao.approveProject(volunteerId, projectId);
 	}
+	
+//	FOR VOLUNTEER LOGIN:
+	@PostMapping("/api/volunteer/login")
+	public Volunteer findVolunteerByCredentials(@RequestBody Volunteer volunteer) throws Exception {
+		return volunteerDao.findVolunteerByCredentials(volunteer.getUsername(), volunteer.getPassword());
+	}
+
 	
 	
 	

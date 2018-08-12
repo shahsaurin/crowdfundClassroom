@@ -71,6 +71,14 @@ public class TeacherDao {
 		return null;
 	}
 	
+	public Teacher findTeacherByCredentials(String username, String password) throws Exception {
+		List<Teacher> teachers = (List<Teacher>) teacherRepository.findTeacherByCredentials(username, password);
+		if(teachers.isEmpty()) {
+			throw new Exception("User not found!");
+		}
+		return teachers.get(0);
+	}
+	
 	public Teacher updateTeacher(int id, Teacher updatedTeacher) {
 		Optional<Teacher> optTeacher = teacherRepository.findById(id);
 		if(optTeacher.isPresent()) {

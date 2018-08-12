@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.project.emp_classrooms.entities.Message;
 import com.project.emp_classrooms.entities.Project;
+import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.entities.Volunteer;
 import com.project.emp_classrooms.repositories.MessageRepository;
 import com.project.emp_classrooms.repositories.ProjectRepository;
@@ -67,6 +68,14 @@ public class VolunteerDao {
 			return optVolunteer.get();
 		}
 		return null;
+	}
+	
+	public Volunteer findVolunteerByCredentials(String username, String password) throws Exception {
+		List<Volunteer> volunteers = (List<Volunteer>) volunteerRepository.findVolunteerByCredentials(username, password);
+		if(volunteers.isEmpty()) {
+			throw new Exception("Volunteer not found!");
+		}
+		return volunteers.get(0);
 	}
 	
 	public Volunteer updateVolunteer(int id, Volunteer updatedVolunteer) {

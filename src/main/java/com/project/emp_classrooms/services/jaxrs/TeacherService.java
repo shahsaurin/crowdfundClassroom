@@ -33,6 +33,12 @@ public class TeacherService {
 		return teacherDao.createTeacherForSchool(schoolId, teacher);
 	}
 	
+//	FOR TEACHER LOGIN:
+	@PostMapping("/api/teacher/login")
+	public Teacher findTeacherByCredentials(@RequestBody Teacher teacher) throws Exception {
+		return teacherDao.findTeacherByCredentials(teacher.getUsername(), teacher.getPassword());
+	}
+	
 	
 	
 //	BASIC CRUD:
@@ -52,6 +58,7 @@ public class TeacherService {
 	public Teacher findTeacherById(@PathVariable("tid") int teacherId) {
 		return teacherDao.findTeacherById(teacherId);
 	}
+	
 	
 	@PutMapping("/api/teacher/{tid}")
 	public Teacher updateTeacher(

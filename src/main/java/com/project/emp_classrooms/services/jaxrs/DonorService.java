@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.emp_classrooms.daos.DonorDao;
 import com.project.emp_classrooms.entities.Donor;
+import com.project.emp_classrooms.entities.Teacher;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -24,7 +25,12 @@ public class DonorService {
 	
 //	Advanced Use cases:	
 	
-//	Nothing here for now:
+//	FOR DONOR LOGIN:
+	@PostMapping("/api/donor/login")
+	public Donor findDonorByCredentials(@RequestBody Donor donor) throws Exception {
+		return donorDao.findDonorByCredentials(donor.getUsername(), donor.getPassword());
+	}
+	
 	
 	
 //	BASIC CRUD:
