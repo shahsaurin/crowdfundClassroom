@@ -47,22 +47,27 @@ public class ProjectService {
 	@GetMapping("/api/project")
 	public List<Project> findProjects(
 			@RequestParam(name="isApproved", required=false) String isApproved,
-			@RequestParam(name="searchQuery", required=false) String searchQuery) {
+			@RequestParam(name="searchQuery", required=false) String searchQuery,
+			@RequestParam(name="teacherId", required=false) String tId) {
 		
-		searchQuery = searchQuery.toLowerCase();
-		if(isApproved != null && isApproved.equals("true")) {
+		int teacherId;
+		if(tId != null) {
+			teacherId = Integer.parseInt(tId);
+			return projectDao.findAllProjectsByTeacherId(teacherId);
+		} else if(isApproved != null && isApproved.equals("true")) {
 			if(searchQuery != null) {
-				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery, true);
+				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery.toLowerCase(), true);
 			}
 			return projectDao.findAllProjectsByApproval(true);
 		} else if(isApproved != null && isApproved.equals("false")){
 			if(searchQuery != null) {
-				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery, false);
+				return projectDao.findAllProjectsBySearchQueryAndApproval(searchQuery.toLowerCase(), false);
 			}
 			return projectDao.findAllProjectsByApproval(false); 
 		} 
 		return projectDao.findAllProjects();
 	}
+	
 	
 	
 //	BASIC CRUD:

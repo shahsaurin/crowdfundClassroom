@@ -115,6 +115,17 @@ public class ProjectDao {
 		return projectsBySearchQuery;
 	}
 	
+	public List<Project> findAllProjectsByTeacherId(int teacherId) {
+		List<Project> allProjects = (List<Project>) projectRepository.findAll();
+		List<Project> projectsByTeacherId = new ArrayList<Project>();
+		for (Iterator<Project> iterator = allProjects.iterator(); iterator.hasNext();) {
+			Project project = (Project) iterator.next();
+			if(project.getTeacher().getId() == teacherId) {
+				projectsByTeacherId.add(project);
+			}
+		}
+		return projectsByTeacherId;
+	}
 	
 	
 //	BASIC CRUD:
@@ -178,12 +189,12 @@ public class ProjectDao {
 //		Delete all projects:
 //		deleteAllProjects();
 		
-		Project p1 = new Project();
-		p1.setTitle("Laptops needed");
-		p1.setShortDescription("Short_description_1");
-		p1.setSynopsis("Synopsis_1");
-		
-		p1 = createProject(p1);
+//		Project p1 = new Project();
+//		p1.setTitle("Laptops needed");
+//		p1.setShortDescription("Short_description_1");
+//		p1.setSynopsis("Synopsis_1");
+//		
+//		p1 = createProject(p1);
 		
 	}
 
