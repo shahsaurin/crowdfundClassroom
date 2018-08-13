@@ -2,6 +2,7 @@ package com.project.emp_classrooms.services.jaxrs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,12 @@ public class PersonService {
 	
 	@Autowired
 	PersonDao personDao;
+	
+	@GetMapping("/api/person/{pid}")
+	public Person findPersonById(
+			@PathVariable("pid") int personId) {
+		return personDao.findPersonById(personId);
+	}
 	
 	@PutMapping("/api/person/{pid}")
 	public Person updatePerson(
