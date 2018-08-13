@@ -32,11 +32,11 @@ public class Message {
 	private User messageCategory;			// 'User' is an 'Enum' and not an entity (class)	
 	
 	@ManyToOne
-	@JsonIgnore
+//	@JsonIgnore
 	private Person recipient;				// Reference of type of parent class
 	
 	@ManyToOne
-	@JsonIgnore
+//	@JsonIgnore
 	private Person sender;					// Reference of type of parent class
 
 	

@@ -13,6 +13,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn
@@ -34,9 +36,11 @@ public class Person {
 	
 	
 	@OneToMany(mappedBy="recipient")
+	@JsonIgnore
 	private List<Message> messagesReceived;					// CONFIRM IF THIS IS A GOOD WAY TO DO
 	
 	@OneToMany(mappedBy="sender")
+	@JsonIgnore
 	private List<Message> messagesSent;						// CONFIRM IF THIS IS A GOOD WAY TO DO
 	
 	public Person() {
