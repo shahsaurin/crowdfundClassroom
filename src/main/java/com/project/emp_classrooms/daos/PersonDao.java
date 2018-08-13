@@ -23,6 +23,24 @@ public class PersonDao {
 		return null;
 	}
 	
+	public Person updatePerson(int id, Person updatedPerson) {
+		Optional<Person> optExistingPerson = personRepository.findById(id);
+		if(optExistingPerson.isPresent()) {
+			Person existingPerson = optExistingPerson.get();
+			existingPerson.setFirstName(updatedPerson.getFirstName());
+			existingPerson.setLastName(updatedPerson.getLastName());
+			existingPerson.setUsername(updatedPerson.getUsername());
+			existingPerson.setPassword(updatedPerson.getPassword());
+			existingPerson.setCity(updatedPerson.getCity());
+			existingPerson.setDob(updatedPerson.getDob());
+			existingPerson.setEmail(updatedPerson.getEmail());
+			existingPerson.setState(updatedPerson.getState());
+			existingPerson.setPhone(updatedPerson.getPhone());
+			existingPerson.setZip(updatedPerson.getZip());
+			return personRepository.save(existingPerson);
+		}
+		return null;
+	}
 		
 	public void test() {
 

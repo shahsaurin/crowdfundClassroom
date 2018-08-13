@@ -1,0 +1,26 @@
+package com.project.emp_classrooms.services.jaxrs;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.project.emp_classrooms.daos.PersonDao;
+import com.project.emp_classrooms.entities.Person;
+
+@RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
+public class PersonService {
+	
+	@Autowired
+	PersonDao personDao;
+	
+	@PutMapping("/api/person/{pid}")
+	public Person updatePerson(
+			@PathVariable("pid") int personId,
+			@RequestBody Person person) {
+		return personDao.updatePerson(personId, person);
+	}
+}
