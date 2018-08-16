@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+//@Inheritance(strategy=InheritanceType.JOINED)
 public class Teacher extends Person {
 
 	private int projectsInitiated;		// How if INSTEAD ADDED A LIST OF PROJECTS BELOW THE TEACHER HAS INITIATED

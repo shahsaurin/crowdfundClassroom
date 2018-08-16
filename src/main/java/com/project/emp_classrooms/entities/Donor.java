@@ -9,7 +9,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+//@Inheritance(strategy=InheritanceType.JOINED)
 public class Donor extends Person {
 	
 	private int contributedProjects;
