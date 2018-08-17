@@ -17,6 +17,9 @@ import com.project.emp_classrooms.entities.Volunteer;
 public class TestDao implements CommandLineRunner {
 	
 	@Autowired
+	AdminDao adminDao;
+	
+	@Autowired
 	DonorDao donorDao;
 	
 	@Autowired
@@ -43,6 +46,7 @@ public class TestDao implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		adminDao.deleteAllAdmins();
 		donorDao.deleteAllDonors();
 		volunteerDao.deleteAllVolunteers();
 		teacherDao.deleteAllTeachers();
@@ -51,6 +55,7 @@ public class TestDao implements CommandLineRunner {
 		donationDao.deleteAllDonations();
 		messageDao.deleteAllMessages();
 		
+		adminDao.test();
 		donorDao.test();
 		volunteerDao.test();
 		teacherDao.test();
