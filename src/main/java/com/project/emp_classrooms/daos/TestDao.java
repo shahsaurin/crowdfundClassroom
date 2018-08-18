@@ -73,7 +73,9 @@ public class TestDao implements CommandLineRunner {
 		Teacher t1 = new Teacher();
 		t1.setFirstName("test_teacher");
 		t1.setLastName("test_lastN");
-		t1.setDob(Date.valueOf("1985-08-19"));
+		t1.setUsername("t");
+		t1.setPassword("tt");
+//		t1.setDob(Date.valueOf("1985-08-19"));
 		t1 = teacherDao.createTeacherForSchool(s1.getId(), t1);				
 		
 		Project p1 = new Project();
@@ -95,6 +97,8 @@ public class TestDao implements CommandLineRunner {
 		Volunteer v1 = new Volunteer();
 		v1.setFirstName("vol_fname");
 		v1.setLastName("vol_Lname");
+		v1.setUsername("v");
+		v1.setPassword("vv");
 		v1 = volunteerDao.createVolunteer(v1);
 		
 		volunteerDao.approveProject(v1.getId(), p1.getId());
@@ -103,6 +107,8 @@ public class TestDao implements CommandLineRunner {
 		Donor d1 = new Donor();
 		d1.setFirstName("testDonor1");
 		d1.setLastName("testD_Lname1");
+		d1.setUsername("d");
+		d1.setPassword("dd");
 		d1 = donorDao.createDonor(d1);
 		
 		Donor d2 = new Donor();

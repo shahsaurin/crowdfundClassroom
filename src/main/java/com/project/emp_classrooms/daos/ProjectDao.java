@@ -153,7 +153,15 @@ public class ProjectDao {
 			oldProject.setTitle(updatedProject.getTitle());
 			oldProject.setShortDescription(updatedProject.getShortDescription());
 			oldProject.setSynopsis(updatedProject.getSynopsis());
-			oldProject.setIsApproved(updatedProject.getIsApproved());
+			if(updatedProject.getIsApproved() != null) {
+				oldProject.setIsApproved(updatedProject.getIsApproved());
+			}
+			if(updatedProject.getCostToComplete() != null) {
+				oldProject.setCostToComplete(updatedProject.getCostToComplete());
+			}
+			if(updatedProject.getTotalPrice() != null) {
+				oldProject.setTotalPrice(updatedProject.getTotalPrice());
+			}
 			return projectRepository.save(oldProject);
 		}
 		return null;
