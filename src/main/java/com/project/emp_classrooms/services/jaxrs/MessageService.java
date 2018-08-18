@@ -41,6 +41,11 @@ public class MessageService {
 		return messageDao.findSentMessagesForPerson(personId);
 	} 
 	
+	@GetMapping("/api/message")
+	public List<Message> findAllMessages() {
+		return messageDao.findAllMessages();
+	}
+	
 	@DeleteMapping("/api/message/{mid}")
 	public void deleteMessageById (
 			@PathVariable("mid") int messageId) {
