@@ -56,7 +56,7 @@ public class MessageDao {
 		for (Iterator<Message> iterator = allMessageInDb.iterator(); iterator.hasNext();) {
 			Message message = (Message) iterator.next();
 			System.out.println(message);
-			if(message.getRecipient().getId() == personId) {
+			if(message.getRecipient() != null && message.getRecipient().getId() == personId) {
 				receivedMessages.add(message);
 			}
 		}
@@ -70,7 +70,7 @@ public class MessageDao {
 		
 		for (Iterator<Message> iterator = allMessageInDb.iterator(); iterator.hasNext();) {
 			Message message = (Message) iterator.next();
-			if(message.getSender().getId() == personId) {
+			if(message.getSender() != null && message.getSender().getId() == personId) {
 				sentMessages.add(message);
 			}
 		}
