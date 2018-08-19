@@ -20,6 +20,7 @@ public class Volunteer extends Person{
 	
 //	Default constructor:
 	public Volunteer() {
+		super();
 		projects = new ArrayList<Project>();
 	}
 

@@ -20,6 +20,7 @@ public class Donor extends Person {
 	
 //	Default constructor:
 	public Donor() {
+		super();
 		donations = new ArrayList<Donation>();
 	}
 	

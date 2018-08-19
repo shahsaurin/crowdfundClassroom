@@ -1,5 +1,6 @@
 package com.project.emp_classrooms.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,6 +26,13 @@ public class Teacher extends Person {
 	@OneToMany(mappedBy="teacher")
 	private List<Project> projects;
 
+	
+	public Teacher() {
+		super();
+		projects = new ArrayList<Project>();
+	}
+
+	
 	public int getProjectsInitiated() {
 		return projectsInitiated;
 	}
