@@ -44,7 +44,8 @@ public class DonationDao {
 		Boolean alreadyDonatedToProject = false;
 		for (Iterator<Donation> iterator = previousDonations.iterator(); iterator.hasNext();) {
 			Donation donation2 = (Donation) iterator.next();
-			if(donation2.getDonor().getId() == donorId && donation2.getProject().getId() == projectId) {
+			if(donation2.getDonor() != null && donation2.getDonor().getId() == donorId && 
+					donation2.getProject() != null && donation2.getProject().getId() == projectId) {
 				alreadyDonatedToProject = true;
 				System.out.println("Enter in: DonorId = " + donorId + " PrjId = " + projectId);
 				break;
