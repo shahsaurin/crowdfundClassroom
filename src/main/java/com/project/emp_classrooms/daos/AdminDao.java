@@ -1,7 +1,5 @@
 package com.project.emp_classrooms.daos;
 
-import java.sql.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +47,9 @@ public class AdminDao {
 	}
 	
 	public void test() {
+//		Sample tests for this DAO that are executed from the Java application is run:
 		
+//		Create a super admin:
 		Admin admin = new Admin();
 		admin.setUsername("admin");
 		admin.setPassword("admin");

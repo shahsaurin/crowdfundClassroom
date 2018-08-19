@@ -92,20 +92,15 @@ public class SchoolDao {
 	
 	
 	public void test() {
-//		Delete all schools:
-//		deleteAllSchools();
+//		Sample tests for this DAO that are executed from the Java application is run:
 		
 		School s1 = new School();
 		s1.setName("NEU");
 		s1.setCity("BOS");
 		s1.setZip("02115");
-		
-		School s2 = createSchool(s1);
-		
 		s1.setCity("Boston");
-		updateSchool(s2.getId(), s1);
+		s1 = createSchool(s1);
 		
-
 	}
 
 }

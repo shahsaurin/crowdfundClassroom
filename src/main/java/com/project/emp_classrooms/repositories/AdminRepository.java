@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.project.emp_classrooms.entities.Admin;
-import com.project.emp_classrooms.entities.Volunteer;
 
 public interface AdminRepository 
 	extends CrudRepository<Admin, Integer>{

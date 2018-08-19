@@ -142,17 +142,14 @@ public class TeacherDao {
 	
 	
 	public void test() {
-//		Delete all teachers:
-//		deleteAllTeachers();
+//		Sample tests for this DAO that are executed from the Java application is run:
 		
 		Teacher t1 = new Teacher();
-		t1.setProjectsInitiated(15);
+		t1.setProjectsInitiated(5);
 		t1.setDob(Date.valueOf("1995-06-20"));
-		t1.setFirstName("tea_1");
+		t1.setFirstName("Sample Teacher1");
+		t1.setLastName("Teacher1_LName");
 		t1 = createTeacher(t1);
-		
-		t1.setLastName("teaname");
-		updateTeacher(t1.getId(), t1);
 
 	}
 }

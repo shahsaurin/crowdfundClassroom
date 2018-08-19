@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.project.emp_classrooms.entities.Donation;
 import com.project.emp_classrooms.entities.Donor;
 import com.project.emp_classrooms.entities.Message;
-import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.repositories.DonationRepository;
 import com.project.emp_classrooms.repositories.DonorRepository;
 import com.project.emp_classrooms.repositories.MessageRepository;
@@ -120,18 +119,13 @@ public class DonorDao {
 	
 	
 	public void test() {
-//		Delete all donors:
-//		deleteAllDonors();
-		
+//		Sample tests for this DAO that are executed from the Java application is run:
 		Donor d1 = new Donor();
 		d1.setContributedProjects(7);
 		d1.setDob(Date.valueOf("1993-06-10"));
-		d1.setFirstName("donor1");
-		Donor d2 = createDonor(d1);
-		
-		d1.setLastName("donor_lname");
-		updateDonor(d2.getId(), d1);
-		
+		d1.setFirstName("Sample donor1");
+		d1.setLastName("donorLastName");
+		d1 = createDonor(d1);		
 
 	}
 }

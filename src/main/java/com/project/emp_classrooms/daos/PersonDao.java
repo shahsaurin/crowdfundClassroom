@@ -68,6 +68,6 @@ public class PersonDao {
 	}
 		
 	public void test() {
-
+//		Sample tests for this DAO that are executed from the Java application is run:
 	}
 }

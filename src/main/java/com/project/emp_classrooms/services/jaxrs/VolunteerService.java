@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.emp_classrooms.daos.VolunteerDao;
-import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.entities.Volunteer;
 
 @RestController

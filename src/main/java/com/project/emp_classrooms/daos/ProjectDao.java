@@ -194,16 +194,7 @@ public class ProjectDao {
 	
 	
 	public void test() {
-//		Delete all projects:
-//		deleteAllProjects();
-		
-//		Project p1 = new Project();
-//		p1.setTitle("Laptops needed");
-//		p1.setShortDescription("Short_description_1");
-//		p1.setSynopsis("Synopsis_1");
-//		
-//		p1 = createProject(p1);
-		
+//		Sample tests for this DAO that are executed from the Java application is run:
 	}
 
 }

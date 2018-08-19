@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.project.emp_classrooms.entities.Message;
 import com.project.emp_classrooms.entities.Project;
-import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.entities.Volunteer;
 import com.project.emp_classrooms.repositories.MessageRepository;
 import com.project.emp_classrooms.repositories.ProjectRepository;
@@ -143,19 +142,15 @@ public class VolunteerDao {
 	
 	
 	public void test() {
-//		Delete all volunteers:
-//		deleteAllVolunteers();
+//		Sample tests for this DAO that are executed from the Java application is run:
 		
 		Volunteer d1 = new Volunteer();
-		d1.setProjectsApproved(11);
+		d1.setProjectsApproved(7);
 		d1.setDob(Date.valueOf("1995-05-10"));
-		d1.setFirstName("vol_1");
-		Volunteer d2 = createVolunteer(d1);
-		
-		d1.setLastName("volname");
-		updateVolunteer(d2.getId(), d1);
-		
-
+		d1.setFirstName("Sample Volunteer1");
+		d1.setLastName("Vol1_LName");
+		d1 = createVolunteer(d1);
+	
 	}
 
 }

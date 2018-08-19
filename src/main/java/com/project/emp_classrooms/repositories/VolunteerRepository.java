@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.project.emp_classrooms.entities.Teacher;
 import com.project.emp_classrooms.entities.Volunteer;
 
 public interface VolunteerRepository 

@@ -111,17 +111,6 @@ public class MessageDao {
 	}
 
 	public void test() {
-		// Delete all messages:
-		// deleteAllMessages();
-		//
-		// Message d1 = new Message();
-		// d1.setDescription("Sample_message 1");
-		// d1.setMessageCategory(User.Donor);
-		//
-		// Message d2 = createMessage(d1);
-		//
-		// d1.setDescription("edited_description 1");
-		// updateMessage(d2.getId(), d1);
-
+//		Sample tests for this DAO that are executed from the Java application is run:
 	}
 }

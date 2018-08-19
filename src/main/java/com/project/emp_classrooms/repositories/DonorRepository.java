@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.project.emp_classrooms.entities.Donor;
-import com.project.emp_classrooms.entities.Teacher;
 
 public interface DonorRepository 
 	extends CrudRepository<Donor, Integer>{
