@@ -6,7 +6,7 @@
 	<groupId>com.project.emp_classrooms</groupId>
 	<artifactId>empower-classrooms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>empower-classrooms</name>
 	<description>Spring Boot Project - Empower Classrooms</description>
